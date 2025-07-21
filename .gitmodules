@@ -1,6 +1,6 @@
-[submodule "qs-backend"]
+[submodule "backend"]
 	path = qs-backend
 	url = https://github.com/marcomartinscastanho/quiz-stats-backend
-[submodule "qs-frontend"]
+[submodule "frontend"]
 	path = qs-frontend
 	url = https://github.com/marcomartinscastanho/quiz-stats-frontend

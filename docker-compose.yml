@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:17
+    restart: always
+    environment:
+      POSTGRES_DB: zecolmeiadb
+      POSTGRES_USER: zecolmeia
+      POSTGRES_PASSWORD: z3!c0lm314
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./qs-backend
+    command: ./start.sh
+    volumes:
+      - ./qs-backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - ./qs-backend/.env
+
+  frontend:
+    build:
+      context: ./qs-frontend
+    volumes:
+      - ./qs-frontend:/app
+      - node_modules:/app/node_modules
+    ports:
+      - "5173:5173"
+    stdin_open: true
+    tty: true
+
+volumes:
+  postgres_data:
+  node_modules:
