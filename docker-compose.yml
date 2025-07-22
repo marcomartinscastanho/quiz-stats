@@ -29,11 +29,14 @@ services:
   frontend:
     build:
       context: ./qs-frontend
+      dockerfile: Dockerfile.dev
     volumes:
       - ./qs-frontend:/app
       - node_modules:/app/node_modules
     ports:
       - "5173:5173"
+    env_file:
+      - ./qs-frontend/.env
     stdin_open: true
     tty: true
 
